@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Super Park</title>
+  
+  <!-- Letsee SDK -->
+  <script src="https://s-developer.letsee.io/api/webar?key=eb22e5b6e698449d192e5f7af4a4e0d44cf5a67aaf1cfe16e543b75d6ab9b447"></script>
+  
+  <style media="place" type="text/css">
+    #container {
+      -letsee-target: uri('https://s-developer.letsee.io/api-tm/target-manager/target-uid/60482d99358ef31bd651db25');
+      width: 1000px;
+      height: 563px;
+    }
+  </style>
+  
+  <style>
+    #kingmedia-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /** 비디오 비율을 마커비율에 맞춰서 강제로 채우기 **/
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <video id="kingmedia-video" src="assets/superpark.mp4" playsinline preload="none" loop muted></video>
+</div>
+
+<script>
+  const myVideo = document.getElementById('kingmedia-video');
+  
+  letsee.ready(() => {
+    letsee.start();
+    
+    letsee.onTrackStart(() => {
+      myVideo.play();
+    });
+    letsee.onTrackEnd(() => {
+      myVideo.pause();
+    });
+    letsee.onTrackMove(() => {});
+  });
+  letsee.init();
+</script>
+</body>
+</html>
